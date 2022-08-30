@@ -34,38 +34,8 @@ class MainActivity : ComponentActivity() {
         val viewModel = MainViewModel()
         setContent {
             WeatherAppTheme() {
-                MainDisplay(viewModel, viewModel?.weatherList?.collectAsState()?.value)
+                MainDisplay(viewModel, viewModel.weatherList.collectAsState().value)
             }
         }
     }
-}
-
-@Composable
-fun MainDisplay(viewModel: MainViewModel?, list: List<WeatherCard>) {
-
-    Column(
-        verticalArrangement = Arrangement.SpaceBetween,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxHeight()
-    )
-    {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(20.dp),
-        ) {
-            Spacer(modifier = Modifier.height(0.dp)) // 300 iq move
-            HowIsTheWeatherText()
-            DisplaySearchLocation(viewModel)
-            list.forEach {
-                DisplayWeatherCard(card = it)
-            }
-        }
-        DisplayLogo(resource = R.drawable.alster)
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    MainDisplay(null, listOf(WeatherCard(1, "Stockholm", "")))
 }
