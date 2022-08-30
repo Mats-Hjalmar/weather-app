@@ -19,4 +19,8 @@ class MainViewModel {
             _weatherList.value = _weatherList.value + card
         }
     }
+
+    fun onClickRemoveWeatherCard(card: WeatherCard) {
+        _weatherList.value = _weatherList.value - card
+    }
 }
