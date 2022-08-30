@@ -1,3 +1,3 @@
 package com.example.weather_app
 
-data class WeatherCard (val temperature: Int, val location: String, val weatherIconUrl: String)
+data class WeatherCard (val temperature: Int, val location: String, val isRaining: Boolean, val weatherIcon: Int)

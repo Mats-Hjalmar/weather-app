@@ -16,11 +16,10 @@ class WeatherManagerAPI : WeatherManager {
             val request = Request.Builder().url("http://api.weatherstack.com/current?access_key=c8b754a788fa610e530cf8fe62d0d189&query=$location").build()
             val json = client.newCall(request).execute()
             val content = Gson().fromJson(json.body?.string(), WeatherAPIData::class.java)
-            return WeatherCard(content.current.temperature, content.location.name, content.current.weather_icons[0])
+            return WeatherCard(content.current.temperature, content.location.name, content.current.weather_code >= 263 /* According to docs, everything 263 and bigger is rain */, content.current.weather_code)
         }
         catch (ex: Exception){
-            println(ex)
-            return WeatherCard(0, "", "")
+            throw (ex)
         }
     }
 }
