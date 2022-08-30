@@ -119,10 +119,10 @@ fun Int.toTemperatureString() : String{
 @Composable
 fun DisplayWeatherCard(card: WeatherCard, viewModel: MainViewModel?) {
     val color = when {
-        card.isRaining -> Color(242, 71, 38)
+        card.isRaining -> Color(45, 155, 240)
         card.temperature <= 0 -> Color(45, 155, 240)
-        card.temperature <= 20 -> Color(250, 199, 16)
-        else -> Color(250, 199, 16)
+        card.temperature < 20 -> Color(250, 199, 16)
+        else -> Color(242, 71, 38)
     }
 
     Box(modifier = Modifier
@@ -135,7 +135,7 @@ fun DisplayWeatherCard(card: WeatherCard, viewModel: MainViewModel?) {
                 , modifier = Modifier
                     .padding(5.dp)
                     .fillMaxWidth()) {
-                IconButton(onClick = {  }, modifier = Modifier.size(30.dp)) {
+                IconButton(onClick = { viewModel?.onClickRemoveWeatherCard(card) }, modifier = Modifier.size(30.dp)) {
                     Image(painter = painterResource(id = R.drawable.ic_close_button), contentDescription = "")
                 }
             }
